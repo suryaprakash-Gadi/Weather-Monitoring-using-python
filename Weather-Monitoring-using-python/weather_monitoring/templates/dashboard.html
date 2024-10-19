@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .date-column {
+            width: 150px;
+        }
+        .temperature-column {
+            width: 150px;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px;
+        }
+        .controls select {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Summaries</h1>
+    <div class="controls">
+        <form method="get" action="">
+            <label for="unit">Select Temperature Unit:</label>
+            <select id="unit" name="unit" onchange="this.form.submit()">
+                <option value="celsius" {% if unit == 'celsius' %}selected{% endif %}>Celsius</option>
+                <option value="fahrenheit" {% if unit == 'fahrenheit' %}selected{% endif %}>Fahrenheit</option>
+                <option value="kelvin" {% if unit == 'kelvin' %}selected{% endif %}>Kelvin</option>
+            </select>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>City</th>
+                <th class="date-column">Date</th>
+                <th class="temperature-column">Average Temperature</th>
+                <th class="temperature-column">Max Temperature</th>
+                <th class="temperature-column">Min Temperature</th>
+                <th>Dominant Condition</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for summary in summaries %}
+            <tr>
+                <td>{{ summary.city.name }}</td>
+                <td>{{ summary.date|date:"M d, Y" }}</td>
+                <td>{{ summary.avg_temperature|floatformat:2 }}</td>
+                <td>{{ summary.max_temperature|floatformat:2 }}</td>
+                <td>{{ summary.min_temperature|floatformat:2 }}</td>
+                <td>{{ summary.dominant_condition }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
