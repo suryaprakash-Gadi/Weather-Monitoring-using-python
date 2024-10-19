@@ -14,8 +14,8 @@ This project is a weather dashboard application that fetches weather data, calcu
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/Bhanuu01/Real-Time-Data-Processing-System-for-Weather-Monitoring.git
-    cd Real-Time-Data-Processing-System-for-Weather-Monitoring/weather_monitoring
+    git clone https://github.com/suryaprakash-Gadi/Weather-Monitoring-using-python.git
+    cd Weather-Monitoring-using-python
     ```
 
 2. **Install the required packages:**
